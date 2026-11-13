@@ -1,0 +1,39 @@
+# Ambientes e dependências locais (instalados via setup.ps1 / setup.sh)
+.venv/
+node_modules/
+.cache/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configurações locais de máquina
+.env
+.env.local
+.env.*.local
+
+# Mídia pesada e arquivos de trabalho (preserva apenas a estrutura de pastas)
+Video Bruto/*
+!Video Bruto/.gitkeep
+
+Video Pronto/*
+!Video Pronto/.gitkeep
+
+Referencia/*
+!Referencia/.gitkeep
+
+# Extensões de mídia bruta/renderizada fora de assets/
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.wav
+*.m4a
+*.aac
+
+# Logs, temporários e sistema operacional
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini

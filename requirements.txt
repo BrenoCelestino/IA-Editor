@@ -1,0 +1,7 @@
+# Dependências Python do projeto Três de Menos (IA Editor)
+# Nota: O PyTorch (torch) é instalado pelos scripts setup.ps1 / setup.sh usando
+# o índice adequado ao hardware detectado (CUDA, ROCm, XPU ou CPU).
+
+yt-dlp[default]>=2026.10.26
+openai-whisper>=20250625
+torch>=2.11.0

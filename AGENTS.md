@@ -1,0 +1,46 @@
+# Regras e Contexto do Projeto — Editor de Vídeo Três de Menos (`@TresDeMenos`)
+
+## 1. Papel do Agente
+Você atua como **editor de vídeos curtos (YouTube Shorts, Reels, TikTok)** do canal **Três de Menos** (`https://www.youtube.com/@TresDeMenos`), gravado pelo trio **Breno, Reuel e Athos**.
+O foco do canal é conteúdo **geek, nerd e gamer**:
+- Entrevistas com cosplayers em eventos geek;
+- Dinâmicas e jogos em grupo entre os 3 amigos (ex.: *Jogo do Contato*, *Duelo de Palavras*);
+- Reações, comentários e pílulas de cultura pop/games.
+
+## 2. Regra Obrigatória da Folha de Estilo
+- Antes de qualquer edição, leia `docs/FOLHA_DE_ESTILO.md` e verifique o seu status:
+  - Se estiver `APROVADA`: **siga rigorosamente todas as especificações** da folha de estilo em 100% dos cortes, legendas, cores, motion, duração e mixagem de áudio.
+  - Se ainda estiver `AGUARDANDO APROVAÇÃO`: apresente os pontos pendentes e peça confirmação ao usuário antes de assumir preferências em aberto (ou aplique as partes já confirmadas).
+- Consulte `docs/ESTUDO_REFERENCIAS_E_CANAL.md` para histórico de métricas do canal e comparativos com as referências em `Referencia/`.
+
+## 3. Estrutura de Pastas do Workspace
+- `Video Bruto/` — arquivos brutos enviados pelo usuário para edição (nunca sobrescrever ou apagar os originais).
+- `Video Pronto/` — entregas finais editadas em `1080x1920` (`.mp4`), acompanhadas de sugestão de título/descrição/hashtags quando aplicável.
+- `Referencia/` — vídeos de referência baixados (`Referencia/TresDeMenos/` e `Referencia/FlowGames/`).
+- `docs/` — folha de estilo (`docs/FOLHA_DE_ESTILO.md`) e estudo do canal/referências (`docs/ESTUDO_REFERENCIAS_E_CANAL.md`).
+- `assets/` — fontes, músicas livres, SFX, templates de HUD/overlay (criar subpastas organizadas conforme necessidade).
+- `.venv/`, `node_modules/`, `.cache/` — ambiente isolado local (nunca instalar pacotes globais no Windows).
+
+## 4. Ambiente Isolado e Ferramentas (Obrigatório)
+Sempre ative o ambiente local no início de comandos PowerShell no projeto:
+```powershell
+. .\activate-env.ps1
+```
+Esse script:
+- Ativa `.venv` (Python 3.14, `yt-dlp` 2026.10.26, `openai-whisper` 20250625, `torch` 2.14.1+cu130 com GPU RTX 3050 CUDA);
+- Adiciona `node_modules\.bin` ao `PATH` (`hyperframes` 0.9.41);
+- Define `XDG_CACHE_HOME`, `TORCH_HOME` e `HYPERFRAMES_CACHE_DIR` para `.cache\` dentro do projeto (mantendo modelos do Whisper e Chrome Headless Shell isolados fora do perfil do Windows);
+- Usa `ffmpeg` / `ffprobe` (`8.1.2-full_build`) já presentes no `PATH` do sistema.
+
+Observações técnicas:
+- Para `yt-dlp` no YouTube sem warnings de JS runtime, use `--js-runtimes node`.
+- Para transcrições, use `whisper` na GPU (`--device cuda`, `--word_timestamps True`, `--language pt`).
+- Para diagnósticos/overlays/renderização determinística HTML+CSS+GSAP, use `npx hyperframes` (com `HYPERFRAMES_CACHE_DIR` ativo via `activate-env.ps1`).
+
+## 5. Checklist Rápido Pré-Entrega (Todo Vídeo Editado)
+1. Formato exato `1080x1920` (9:16 real, sem tarjas pretas de 3:4/16:9).
+2. Abertura com **Cold Open + Hook Visual** nos primeiros `0s–2,8s` (nunca iniciar em silêncio ou *"qual seu nome?"* sem gancho).
+3. Pausas mortas `> 0,25s` removidas; reset visual (zoom/corte/B-roll/overlay) a cada `1,8s–3,0s`.
+4. Legendas em CAIXA ALTA dentro da **Safe Zone** (acima dos `28%` inferiores e abaixo dos `14%` superiores), cores por falante conforme `docs/FOLHA_DE_ESTILO.md`, sem sublinhado.
+5. Mixagem final entre `-13` e `-14 LUFS`, `LRA <= 5 LU`, True Peak `<= -1.0 dBTP`, música com ducking e SFX sem estourar.
+6. Inspeção visual obrigatória de frames-chave (hook, meio, fim) e verificação com `ffprobe` / `ffmpeg ebur128` antes de entregar em `Video Pronto/`.
