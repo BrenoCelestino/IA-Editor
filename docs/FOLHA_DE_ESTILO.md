@@ -82,8 +82,12 @@ O estilo do **Três de Menos** combina:
 ### 5.1 Motion Graphics (Renderizados via HyperFrames / Overlay)
 - **Regra Geral de Animação (Obrigatória):** **Todo** elemento gráfico (hook banner, micro-tags, badges de `@`, placar/HUD e cards) deve ter **animação de entrada e saída** (ex.: *slide* suave + *fade* de `~0,20s–0,25s`, ou escala/pop com *ease-out*), nunca aparecendo ou sumindo de forma seca/estática.
 - **Entrevistas de Evento:**
-  - **Micro-tag contextual** (`0,8s–1,8s`) no canto superior ao trocar de assunto: ex. `💸 QUANTO CUSTOU?`, `🛠️ MAIOR GAMBIARRA`, `🎭 24H NO PERSONAGEM`.
-  - **Badge de crédito do cosplayer** (`@instagram`) em card compacto e limpo nos primeiros segundos da resposta principal.
+  - **Proibido colocar tópicos/comentários no canto superior** resumindo o que a pessoa falou (ex.: *"reciclado desde 2012"*, *"quanto custou"*, *"maior gambiarra"*). Manter a tela limpa como nas referências de entrevista estudadas.
+  - **Textos no canto superior esquerdo (opcional, no máximo):**
+    1. **Nome do Personagem + Jogo/Anime** quando o cosplayer falar quem está fazendo (ex.: `CLOUD STRIFE • FINAL FANTASY`), **e/ou**
+    2. **A pergunta feita ao cosplayer** (curta, exibida apenas na entrada da pergunta, com animação de entrada e saída).
+  - **Números de impacto e B-roll de personagem (quando aplicável):** valores (`R$700`, `7/10`) podem aparecer em pop animado grande (`#4ADE80` / `#FFD600`), e artes/referências rápidas do personagem original (`0,8s–1,5s`) podem entrar na metade inferior para contextualizar o cosplay.
+  - **Badge de crédito do cosplayer** (`@instagram`) em card compacto e limpo nos primeiros segundos da resposta principal (quando informado).
 - **Dinâmicas em Grupo (`Breno`, `Reuel` e `Athos`):**
   - **HUD Superior Compacto:** Tema / Letra atual + **Placar ou Vidas de Breno, Reuel e Athos** usando as mesmas cores atribuídas às legendas de cada um naquele vídeo + mini-barra/timer quando houver contagem.
   - **Freeze Frame P&B + Zoom lento + Som de erro** em chutes absurdos ou gafes do trio.

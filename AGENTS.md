@@ -34,7 +34,8 @@ Esse script:
 
 Observações técnicas:
 - Para `yt-dlp` no YouTube sem warnings de JS runtime, use `--js-runtimes node`.
-- Para transcrições, use `whisper` na GPU (`--device cuda`, `--word_timestamps True`, `--language pt`).
+- Para transcrições, use `whisper` na GPU (`--device cuda`, `--word_timestamps True`, `--language pt`); em falas simultâneas/duvidosas, confira o áudio antes de legendar.
+- Para cortes sem dessincronia em vídeos VFR de celular, normalize antes para CFR `.mov` (`-fps_mode cfr` + `pcm_s16le`) e corte via `filter_complex_script` (`trim`/`atrim` + `concat`).
 - Para diagnósticos/overlays/renderização determinística HTML+CSS+GSAP, use `npx hyperframes` (com `HYPERFRAMES_CACHE_DIR` ativo via `activate-env.ps1`).
 
 ## 5. Checklist Rápido Pré-Entrega (Todo Vídeo Editado)
@@ -43,4 +44,4 @@ Observações técnicas:
 3. Pausas mortas `> 0,25s` removidas; reset visual (zoom/corte/B-roll/overlay) a cada `1,8s–3,0s`; **sem CTA de pergunta no final** (encerrar no pico da piada/energia).
 4. Legendas em CAIXA ALTA dentro da **Safe Zone** (acima dos `28%` inferiores e abaixo dos `14%` superiores), cores por falante conforme `docs/FOLHA_DE_ESTILO.md`, sem sublinhado.
 5. Mixagem final entre `-13` e `-14 LUFS`, `LRA <= 5 LU`, True Peak `<= -1.0 dBTP`, música com ducking e SFX sem estourar.
-6. Inspeção visual obrigatória de frames-chave (hook, meio, fim) e verificação com `ffprobe` / `ffmpeg ebur128` antes de entregar em `Video Pronto/`, acompanhada de **título, tags/hashtags e sugestão de horário para YouTube Shorts, Instagram Reels e TikTok**.
+6. Inspeção visual obrigatória de frames-chave (hook, meio, fim) e verificação com `ffprobe` (incluindo `video.duration` vs `audio.duration` `<= 0.04s`) / `ffmpeg ebur128` antes de entregar em `Video Pronto/`, acompanhada de **título, tags/hashtags e sugestão de horário para YouTube Shorts, Instagram Reels e TikTok**.

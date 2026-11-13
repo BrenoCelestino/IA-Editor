@@ -13,20 +13,22 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 ## Pré-requisitos Obrigatórios
 1. Ler `docs/FOLHA_DE_ESTILO.md` e confirmar que as regras seguidas estão aprovadas pelo usuário.
 2. Nunca modificar os arquivos originais em `Video Bruto/`. Trabalhar com arquivos temporários em `.cache/trabalho/<nome_projeto>/` e exportar o resultado final em `Video Pronto/`.
-3. Sempre iniciar comandos PowerShell com `. .\activate-env.ps1`.
+3. Sempre iniciar comandos PowerShell com `Set-Location "C:\Users\breno\Desktop\IA Editor"; . .\activate-env.ps1` (cada shell abre em `C:\Users\breno`).
 
 ## Pipeline de Edição Passo a Passo
 
-### 1. Ingestão e Análise do Bruto
-- Inspecionar o bruto com `ffprobe` (resolução, fps, orientação/rotação, streams de áudio, duração, loudness).
+### 1. Ingestão, Normalização CFR e Análise do Bruto
+- Inspecionar o bruto com `ffprobe` (resolução, fps — verificar se é VFR de celular —, orientação/rotação, streams de áudio, duração, loudness).
+- **Normalização obrigatória contra dessincronia (VFR):** Antes de cortar qualquer trecho de vídeo gravado em celular (VFR) ou com rotação no Display Matrix, converter o bruto (ou o trecho contínuo) para um intermediário **CFR exato** em `.mov` (`h264_nvenc` + `pcm_s16le 48kHz`, `-fps_mode cfr -r 30` ou `60`, `-g 15`, `aresample=48000:async=1`), confirmando com `ffprobe` que `video.duration == audio.duration`.
 - Extrair áudio mono 16kHz para `.cache/trabalho/<id>/audio.wav` e transcrever com `whisper` na GPU com `word_timestamps=True` e `language="pt"`.
-- Se o vídeo tiver trechos longos, gerar uma folha de contato visual com `ffmpeg` para identificar falantes, expressões, detalhes de cosplay e melhores momentos visuais.
+- **Conferência de falas sobrepostas:** Quando 2+ pessoas falarem ao mesmo tempo (ex.: *"3, 2, 1..."* em dinâmicas) ou o Whisper gerar frase duvidosa, extrair um clipe curto `.mp3` e conferir o áudio diretamente com `read_file` antes de gerar as legendas.
+- Se o vídeo tiver trechos longos, gerar frames de amostra / folha de contato visual com `ffmpeg` para identificar falantes, expressões, detalhes de cosplay e melhores momentos visuais.
 
 ### 2. Roteiro de Corte (Retenção Primeiro)
 - **Identificar o Cold Open (0s–2,5s) + Transição simples:** começar já no frame 0 com a resposta mais engraçada, frase absurda ou close impressionante do cosplay + *punch-in* (`115%–125%`) + SFX de impacto, banner curto (`3–5 palavras`) e uma **pequena transição simples** (ex.: corte seco com impacto sonoro ou *flash/zoom reset* de `~0,15s`) entrando no vídeo principal.
 - **Selecionar os melhores blocos:** para entrevistas, manter as **2–4 melhores trocas** dentro da duração alvo (`45s–65s`, teto `70s` salvo aprovação para Parte 1/2). Para pílulas/reações, mirar `25s–45s`.
 - **Cortar pausas mortas > 0.25s** respeitando timing cômico (`0.4s–0.6s` quando houver piada) e **encerrar no pico** (sem CTA de pergunta no final).
-- **Planejar resets visuais a cada 1.8s–3.0s:** mapear momentos de `punch-in` (`115%–125%`), `close` em detalhe (`130%+`), inserção de B-roll/meme (`0.8s–1.8s`) ou micro-tag/HUD.
+- **Planejar resets visuais a cada 1.8s–3.0s:** mapear momentos de `punch-in` (`115%–125%`), `close` em detalhe (`130%+`), inserção de B-roll/referência do personagem (`0.8s–1.8s`) ou pop de número (`R$`, nota). **Não** criar tags/tópicos de comentário no canto superior sobre o que a pessoa falou; no canto superior esquerdo usar no máximo **Personagem • Jogo/Anime** e/ou **a pergunta feita**.
 
 ### 3. Tratamento de Áudio e Mixagem
 - Aplicar passa-altas (`highpass=f=80`) para limpar vento/ar-condicionado de evento e compressão vocal consistente.
@@ -39,11 +41,12 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 - Aplicar color grade sutil (contraste `+10–15%`, saturação ~`0.44–0.50`).
 - Gerar overlays gráficos e legendas sincronizadas por palavra (`word_timestamps`) usando **fontes locais portáveis** (`assets/fonts/Rubik-Bold.ttf` e `Rubik-BoldItalic.ttf`, passando `fontsdir` ao filtro `ass` para funcionar igual no Windows e Linux), respeitando as cores por falante (`Breno`, `Reuel` e `Athos` com paleta aleatorizada por vídeo entre `#FFD600`, `#38BDF8`, `#F472B6`, e convidados em `#FFFFFF`) e **Safe Zone** (`y` mais abaixo, entre `64%` e `70%` da altura, sempre acima dos `28%` inferiores; banner de hook no terço superior `16%–21%` saindo aos `2.8s`; HUD/placar no topo seguro em dinâmicas em grupo) definidos em `docs/FOLHA_DE_ESTILO.md`.
 - **Animação obrigatória em todo overlay:** hook banner, micro-tags, badges e HUD devem entrar e sair com animação suave (*slide* + *fade* de `~0,20s–0,25s`), nunca com corte seco sem transição.
-- Para segmentos intermediários com áudio PCM (`pcm_s16le`), usar container `.mkv` (evitar `.ts`, que não suporta PCM) e `zoompan` em *upscale* `2x` (ou `crop` fixo para *punch-in* seco).
+- **Cortes e Concatenação sem Drift:** Em cima do intermediário CFR (`.mov`), realizar os cortes **sempre** com timestamps arredondados para múltiplos exatos de `1/fps` usando `filter_complex_script` (`trim=start=...:end=...,setpts=PTS-STARTPTS` + `atrim=start=...:end=...,asetpts=PTS-STARTPTS` + `concat=n=N:v=1:a=1`) para um arquivo `base_concat.mov` (`pcm_s16le`). **Nunca** usar `-ss` de entrada + `-ss` de saída combinados com `setpts=PTS-STARTPTS` antes do `trim`, e **evitar** `-f concat -c:v copy` em `.mkv` com `zoompan` (pode corromper cabeçalhos EBML e acumular desync).
+- Para segmentos com `zoompan`, aplicar sempre em *upscale* `2x` (`2160:3840`) com `fps` explícito (`30` ou `60`). Em dinâmicas com 3 pessoas lado a lado, alternar `base`, `punch_left`, `punch_right` e `punch_center` acompanhando quem fala/reage.
 - Renderizar com `hyperframes` (quando usar composições HTML/CSS/GSAP) e/ou `ffmpeg` com encoding de alta qualidade (`libx264 -crf 17 -pix_fmt yuv420p` ou NVENC equivalente com verificação de qualidade).
 
 ### 5. Verificação Pós-Render Obrigatória
-- Conferir `ffprobe` no arquivo final em `Video Pronto/` (deve ser `1080x1920`, áudio AAC 44.1/48kHz).
+- Conferir `ffprobe` no arquivo final em `Video Pronto/` (deve ser `1080x1920`, CFR `30` ou `60 fps`, áudio AAC `48kHz`, e **duração de vídeo e áudio idênticas** — diferença apenas do padding mínimo de frame AAC `<= 0.04s`).
 - Conferir loudness com `ffmpeg -af ebur128` (`I` próximo de `-13/-14 LUFS`, `LRA <= 5 LU`).
 - Extrair frames do hook (`0.5s`), meio (`50%`), transição/meme e final (`95%`) e inspecionar visualmente com `read_file` para garantir que nenhuma legenda invade a UI do Shorts nem sobrepõe rostos.
 - Entregar junto ao vídeo uma sugestão separada para **YouTube Shorts**, **Instagram Reels** e **TikTok** contendo: **título/legenda**, **tags/hashtags específicas** e **horário sugerido de postagem** (fuso `America/Fortaleza`).

@@ -75,3 +75,20 @@
    - Normalizar voz/mix final entre **`-13` e `-14 LUFS`** com `LRA <= 5 LU`, música a `-24/-28 dB` abaixo da voz e memes/SFX nivelados sem picos agressivos.
 6. **Fechamento para Loop / Replay:**
    - Terminar no pico da piada/pose ou ligando o final ao gancho inicial — evitar despedidas frias (*"é isso, valeu, tchau"*).
+
+---
+
+## 4. Estudo Complementar: Novas Referências de Entrevistas (`Referencia/Entrevistas/`)
+
+Adicionadas em 13/11/2026 para refinar ritmo, limpeza visual e formato de entrevistas de cosplay:
+
+| Vídeo | Resolução / FPS | Duração | Ritmo (WPM) | Loudness (`ebur128`) | Principais Aprendizados |
+|---|---|---|---|---|---|
+| `XZkF5qXf_bk` | `1080x1920` / `60 fps` | `45,81s` | `202 WPM` | `-17.6 LUFS` (`LRA 3.3 LU`) | Entrevista emocional com corte seco entre plano médio e close. Legendas curtas de 1–3 palavras alternando cor por ênfase, **topo completamente limpo** (sem tópicos de comentário). |
+| `g2lJJVltUCQ` | `1080x1920` / `30 fps` | `82,52s` | `200 WPM` | `-15.1 LUFS` (`LRA 8.1 LU`) | Gancho no frame 0 já com pergunta provocativa; cortes rápidos encadeando cosplayers; pop grande de nota/preço (`7/10`, `R$700`) e card do personagem original na metade inferior (`Hellboy`, `Neuvillette`, `Jack Sparrow`). |
+| `tkCPyQspM3I` | `1080x1920` / `30 fps` | `103,89s` | `246 WPM` | `-13.3 LUFS` (`LRA 7.5 LU`) | Ritmo altíssimo (`246 WPM`) sem pausas mortas; legendas compactas de 2–4 palavras; pop numérico em verde-limão (`R$70,00`, `R$229`); referências visuais dos personagens (`Raiden`, `Spider-Noir`, `Jade`, `Frieren`) na parte inferior sem poluir o topo. |
+
+### Síntese Aplicada ao Estilo Três de Menos
+1. **Tela superior limpa:** abolir caixinhas de tópico/comentário resumindo falas (*"reciclado desde 2012"*, *"quanto custou"*). Limitar textos no canto superior esquerdo (quando usados) a **Personagem • Jogo/Anime** e/ou **a pergunta feita**.
+2. **Referência visual rápida & números em destaque:** usar pop numérico em verde-limão/amarelo quando houver valor/nota e inserções curtas do personagem original na metade inferior quando ajudar a contextualizar o cosplay.
+3. **Gancho imediato + ritmo 200+ WPM:** abrir já na pergunta/reação forte no frame 0, mantendo alternância de zoom/corte a cada `1,8s–3,0s`.
