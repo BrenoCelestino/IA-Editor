@@ -239,7 +239,7 @@ if (-not $recreateVenv) {
 }
 
 if (-not $needPythonInstall) {
-    $checkPy = & $venvPython -c "import yt_dlp, whisper, torch; dev='cuda' if torch.cuda.is_available() else ('xpu' if hasattr(torch,'xpu') and torch.xpu.is_available() else 'cpu'); print(dev)" 2>$null
+    $checkPy = & $venvPython -c "import yt_dlp, whisper, torch, PIL, numpy; dev='cuda' if torch.cuda.is_available() else ('xpu' if hasattr(torch,'xpu') and torch.xpu.is_available() else 'cpu'); print(dev)" 2>$null
     if ($LASTEXITCODE -eq 0 -and $checkPy) {
         $detectedPyDev = $checkPy.Trim()
         if ($detectedPyDev -eq $whisperDevice -or ($whisperDevice -eq "cpu")) {
@@ -262,14 +262,14 @@ if ($needPythonInstall) {
             }
         }
         uv pip install --python $venvPython --index-url $torchIndex "torch>=2.11.0"
-        uv pip install --python $venvPython "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625"
+        uv pip install --python $venvPython "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625" "pillow>=11.0.0" "numpy>=2.0.0"
     } else {
         if ($recreateVenv) {
             python -m venv .venv
         }
         & $venvPython -m pip install --upgrade pip
         & $venvPython -m pip install --index-url $torchIndex "torch>=2.11.0"
-        & $venvPython -m pip install "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625"
+        & $venvPython -m pip install "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625" "pillow>=11.0.0" "numpy>=2.0.0"
     }
     Write-Ok "Dependências Python instaladas em .venv."
 }
@@ -323,7 +323,31 @@ if ((Test-Path $localModelFile) -and ((Get-Item $localModelFile).Length -gt 0) -
     Write-Ok "Modelo Whisper '$whisperModel' baixado em: $localModelFile"
 }
 
-# 6. Salvar perfil de hardware detectado em .cache\hardware.env
+# 6. Garantir fontes locais em assets\fonts\ (portável entre Windows e Linux)
+$fontsDir = Join-Path $ProjectRoot "assets\fonts"
+New-Item -ItemType Directory -Force -Path $fontsDir | Out-Null
+$fontMap = @{
+    "Rubik-Bold.ttf"       = "https://github.com/google/fonts/raw/main/ofl/rubik/static/Rubik-Bold.ttf"
+    "Rubik-BoldItalic.ttf" = "https://github.com/google/fonts/raw/main/ofl/rubik/static/Rubik-BoldItalic.ttf"
+}
+foreach ($fontName in $fontMap.Keys) {
+    $destFont = Join-Path $fontsDir $fontName
+    if ((Test-Path $destFont) -and ((Get-Item $destFont).Length -gt 0)) {
+        Write-Ok "Fonte local disponível: assets\fonts\$fontName"
+    } else {
+        $winFont = Join-Path $env:WINDIR "Fonts\$fontName"
+        if (Test-Path $winFont) {
+            Copy-Item $winFont $destFont -Force
+            Write-Ok "Fonte copiada para uso local: assets\fonts\$fontName"
+        } else {
+            Write-Host "  Baixando fonte $fontName para assets\fonts\..."
+            Invoke-WebRequest -Uri $fontMap[$fontName] -OutFile $destFont -UseBasicParsing
+            Write-Ok "Fonte baixada localmente: assets\fonts\$fontName"
+        }
+    }
+}
+
+# 7. Salvar perfil de hardware detectado em .cache\hardware.env
 $hwFile = Join-Path $cacheRoot "hardware.env"
 @(
     "TRESDEMENOS_OS=windows"

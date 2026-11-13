@@ -37,7 +37,9 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 ### 4. Compositing, Legendas e Motion (`ffmpeg` + `hyperframes`)
 - Padronizar tela cheia **`1080x1920`** (sem tarjas pretas; para B-roll 16:9 usar faixa central ou split mantendo sujeito visível).
 - Aplicar color grade sutil (contraste `+10–15%`, saturação ~`0.44–0.50`).
-- Gerar overlays gráficos e legendas sincronizadas por palavra (`word_timestamps`) respeitando as cores por falante (`Breno`, `Reuel` e `Athos` com paleta aleatorizada por vídeo entre `#FFD600`, `#38BDF8`, `#F472B6`, e convidados em `#FFFFFF`), fonte **`Rubik Bold`** e **Safe Zone** (`y` mais abaixo, entre `64%` e `70%` da altura, sempre acima dos `28%` inferiores; banner de hook no terço superior `16%–21%` saindo aos `2.8s`; HUD/placar no topo seguro em dinâmicas em grupo) definidos em `docs/FOLHA_DE_ESTILO.md`.
+- Gerar overlays gráficos e legendas sincronizadas por palavra (`word_timestamps`) usando **fontes locais portáveis** (`assets/fonts/Rubik-Bold.ttf` e `Rubik-BoldItalic.ttf`, passando `fontsdir` ao filtro `ass` para funcionar igual no Windows e Linux), respeitando as cores por falante (`Breno`, `Reuel` e `Athos` com paleta aleatorizada por vídeo entre `#FFD600`, `#38BDF8`, `#F472B6`, e convidados em `#FFFFFF`) e **Safe Zone** (`y` mais abaixo, entre `64%` e `70%` da altura, sempre acima dos `28%` inferiores; banner de hook no terço superior `16%–21%` saindo aos `2.8s`; HUD/placar no topo seguro em dinâmicas em grupo) definidos em `docs/FOLHA_DE_ESTILO.md`.
+- **Animação obrigatória em todo overlay:** hook banner, micro-tags, badges e HUD devem entrar e sair com animação suave (*slide* + *fade* de `~0,20s–0,25s`), nunca com corte seco sem transição.
+- Para segmentos intermediários com áudio PCM (`pcm_s16le`), usar container `.mkv` (evitar `.ts`, que não suporta PCM) e `zoompan` em *upscale* `2x` (ou `crop` fixo para *punch-in* seco).
 - Renderizar com `hyperframes` (quando usar composições HTML/CSS/GSAP) e/ou `ffmpeg` com encoding de alta qualidade (`libx264 -crf 17 -pix_fmt yuv420p` ou NVENC equivalente com verificação de qualidade).
 
 ### 5. Verificação Pós-Render Obrigatória

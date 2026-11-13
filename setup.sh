@@ -230,7 +230,7 @@ else
 fi
 
 if [ "$NEED_PY" -eq 0 ]; then
-  if ! "$VENV_PY" -c "import yt_dlp, whisper, torch" >/dev/null 2>&1; then
+  if ! "$VENV_PY" -c "import yt_dlp, whisper, torch, PIL, numpy" >/dev/null 2>&1; then
     NEED_PY=1
   else
     ok ".venv já configurado e funcional (Python $VENV_VER)."
@@ -243,14 +243,14 @@ if [ "$NEED_PY" -eq 1 ]; then
       uv venv .venv --python "3.14" --clear || uv venv .venv --python ">=3.12,<3.15" --clear
     fi
     uv pip install --python "$VENV_PY" --index-url "$TORCH_INDEX" "torch>=2.11.0"
-    uv pip install --python "$VENV_PY" "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625"
+    uv pip install --python "$VENV_PY" "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625" "pillow>=11.0.0" "numpy>=2.0.0"
   else
     if [ "$RECREATE_VENV" -eq 1 ]; then
       python3 -m venv .venv
     fi
     "$VENV_PY" -m pip install --upgrade pip
     "$VENV_PY" -m pip install --index-url "$TORCH_INDEX" "torch>=2.11.0"
-    "$VENV_PY" -m pip install "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625"
+    "$VENV_PY" -m pip install "yt-dlp[default]>=2026.10.26" "openai-whisper>=20250625" "pillow>=11.0.0" "numpy>=2.0.0"
   fi
   ok "Dependências Python instaladas em .venv."
 fi
@@ -293,7 +293,21 @@ else
   ok "Modelo Whisper '$WHISPER_MODEL' baixado em: $LOCAL_MODEL_FILE"
 fi
 
-# 6. Salvar perfil de hardware detectado em .cache/hardware.env
+# 6. Garantir fontes locais em assets/fonts/ (portável entre Windows e Linux)
+FONTS_DIR="$PROJECT_ROOT/assets/fonts"
+mkdir -p "$FONTS_DIR"
+for FONT_NAME in "Rubik-Bold.ttf" "Rubik-BoldItalic.ttf"; do
+  DEST_FONT="$FONTS_DIR/$FONT_NAME"
+  if [ -s "$DEST_FONT" ]; then
+    ok "Fonte local disponível: assets/fonts/$FONT_NAME"
+  else
+    echo "  Baixando fonte $FONT_NAME para assets/fonts/..."
+    curl -fsSL "https://github.com/google/fonts/raw/main/ofl/rubik/static/$FONT_NAME" -o "$DEST_FONT"
+    ok "Fonte baixada localmente: assets/fonts/$FONT_NAME"
+  fi
+done
+
+# 7. Salvar perfil de hardware detectado em .cache/hardware.env
 cat > "$CACHE_ROOT/hardware.env" <<EOF
 TRESDEMENOS_OS=linux
 TRESDEMENOS_CPU_VENDOR=$CPU_VENDOR

@@ -28,8 +28,8 @@ O estilo do **Três de Menos** combina:
 ## 3. Tipografia, Cores e Sistema de Legendas
 
 ### 3.1 Fonte e Acabamento
-- **Fonte principal:** **`Rubik Bold`** (`C:\Windows\Fonts\Rubik-Bold.ttf`) em **CAIXA ALTA (ALL CAPS)**.
-- **Ênfase:** **`Rubik Bold Italic`** (`C:\Windows\Fonts\Rubik-BoldItalic.ttf`) + leve escala (`1.0 → 1.12` com ease rápido) na palavra-chave ou punchline.
+- **Fonte principal:** **`Rubik Bold`** (`assets/fonts/Rubik-Bold.ttf` — fonte local portável para Windows/Linux, sempre carregada via `assets/fonts/`) em **CAIXA ALTA (ALL CAPS)**.
+- **Ênfase:** **`Rubik Bold Italic`** (`assets/fonts/Rubik-BoldItalic.ttf`) + leve escala (`1.0 → 1.12` com ease rápido) na palavra-chave ou punchline.
 - **Contorno e Sombra:** Contorno preto sólido (`stroke ~5px` em 1080p) + sombra projetada (`drop shadow` suave).
 - **Proibido:** Sublinhado nas legendas e blocos de texto com 3+ linhas.
 
@@ -79,6 +79,7 @@ O estilo do **Três de Menos** combina:
 ## 5. Motion Graphics, Música e Sound Design
 
 ### 5.1 Motion Graphics (Renderizados via HyperFrames / Overlay)
+- **Regra Geral de Animação (Obrigatória):** **Todo** elemento gráfico (hook banner, micro-tags, badges de `@`, placar/HUD e cards) deve ter **animação de entrada e saída** (ex.: *slide* suave + *fade* de `~0,20s–0,25s`, ou escala/pop com *ease-out*), nunca aparecendo ou sumindo de forma seca/estática.
 - **Entrevistas de Evento:**
   - **Micro-tag contextual** (`0,8s–1,8s`) no canto superior ao trocar de assunto: ex. `💸 QUANTO CUSTOU?`, `🛠️ MAIOR GAMBIARRA`, `🎭 24H NO PERSONAGEM`.
   - **Badge de crédito do cosplayer** (`@instagram`) em card compacto e limpo nos primeiros segundos da resposta principal.
