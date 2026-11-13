@@ -82,13 +82,19 @@
 
 Adicionadas em 13/11/2026 para refinar ritmo, limpeza visual e formato de entrevistas de cosplay:
 
-| Vídeo | Resolução / FPS | Duração | Ritmo (WPM) | Loudness (`ebur128`) | Principais Aprendizados |
-|---|---|---|---|---|---|
-| `XZkF5qXf_bk` | `1080x1920` / `60 fps` | `45,81s` | `202 WPM` | `-17.6 LUFS` (`LRA 3.3 LU`) | Entrevista emocional com corte seco entre plano médio e close. Legendas curtas de 1–3 palavras alternando cor por ênfase, **topo completamente limpo** (sem tópicos de comentário). |
-| `g2lJJVltUCQ` | `1080x1920` / `30 fps` | `82,52s` | `200 WPM` | `-15.1 LUFS` (`LRA 8.1 LU`) | Gancho no frame 0 já com pergunta provocativa; cortes rápidos encadeando cosplayers; pop grande de nota/preço (`7/10`, `R$700`) e card do personagem original na metade inferior (`Hellboy`, `Neuvillette`, `Jack Sparrow`). |
-| `tkCPyQspM3I` | `1080x1920` / `30 fps` | `103,89s` | `246 WPM` | `-13.3 LUFS` (`LRA 7.5 LU`) | Ritmo altíssimo (`246 WPM`) sem pausas mortas; legendas compactas de 2–4 palavras; pop numérico em verde-limão (`R$70,00`, `R$229`); referências visuais dos personagens (`Raiden`, `Spider-Noir`, `Jade`, `Frieren`) na parte inferior sem poluir o topo. |
+| Vídeo | Canal | Views / Likes | Duração | Resolução / FPS | Cortes (`scdet`) | Média/Plano | Ritmo (WPM) | Loudness / LRA (`ebur128`) |
+|---|---|---:|---:|---|---:|---:|---:|---:|
+| `XZkF5qXf_bk` (*Você seria cosplay?*) | Carlosfalante | 1.380.396 / 64.263 | 45,81s | `1080x1920 @ 60` | 8 cortes (9 planos) | 5,09s | 202 WPM | `-17,6 LUFS` / `3,3 LU` |
+| `g2lJJVltUCQ` (*Cosplay brega!!*) | Kelvin William | 4.261.313 / 208.128 | 82,52s | `1080x1920 @ 30` | 49 cortes (50 planos) | **1,65s** | 200 WPM | `-15,1 LUFS` / `8,1 LU` |
+| `tkCPyQspM3I` (*Cosplay brega!!*) | Kelvin William | 8.578.483 / 362.629 | 103,89s | `1080x1920 @ 30` | 60 cortes (61 planos) | **1,70s** | **246 WPM** | `-13,3 LUFS` / `7,5 LU` |
+
+### O que essas referências de 1M–8,5M views confirmam
+1. **Ritmo e densidade visual (Kelvin William — 4,2M e 8,5M views):** Média de **`1,65s–1,70s` por plano** (49–60 cortes) e **`200–246 WPM`**, sem pausas mortas, com abertura já no frame 0 em pergunta provocativa.
+2. **Tela superior limpa:** Nenhum dos 3 vídeos usa caixinhas/tópicos de comentário resumindo o que a pessoa falou (*"reciclado desde 2012"*, *"quanto custou"*). Quando há texto no topo/canto, é no máximo o nome do personagem/referência ou a pergunta feita.
+3. **Legendas curtas + destaque numérico + B-roll inferior:** Blocos de 1–4 palavras com troca de cor na ênfase; pop numérico grande (`7/10`, `R$70,00`, `R$229`, `R$700`) e inserção rápida da arte/personagem original (`Hellboy`, `Neuvillette`, `Jack Sparrow`, `Raiden`, `Spider-Noir`, `Jade`, `Frieren`) na metade inferior sem poluir o topo.
+4. **Loudness competitivo:** O vídeo de maior alcance (`8,57M` views, `tkCPyQspM3I`) trabalha em **`-13,3 LUFS`**, validando exatamente a faixa alvo **`-13` a `-14 LUFS`** adotada na Folha de Estilo do Três de Menos.
 
 ### Síntese Aplicada ao Estilo Três de Menos
-1. **Tela superior limpa:** abolir caixinhas de tópico/comentário resumindo falas (*"reciclado desde 2012"*, *"quanto custou"*). Limitar textos no canto superior esquerdo (quando usados) a **Personagem • Jogo/Anime** e/ou **a pergunta feita**.
+1. **Tela superior limpa:** abolir caixinhas de tópico/comentário resumindo falas. Limitar textos no canto superior esquerdo (quando usados) a **Personagem • Jogo/Anime** e/ou **a pergunta feita**.
 2. **Referência visual rápida & números em destaque:** usar pop numérico em verde-limão/amarelo quando houver valor/nota e inserções curtas do personagem original na metade inferior quando ajudar a contextualizar o cosplay.
 3. **Gancho imediato + ritmo 200+ WPM:** abrir já na pergunta/reação forte no frame 0, mantendo alternância de zoom/corte a cada `1,8s–3,0s`.
