@@ -99,7 +99,7 @@ O estilo do **Três de Menos** combina:
 |---|---|
 | **Loudness Final** | **`-13 LUFS` a `-14 LUFS`** integrados \| True Peak máximo **`-1.0 dBTP`** \| **`LRA <= 5 LU`** |
 | **Voz / Diálogo** | Filtro passa-altas (`80 Hz`) para reduzir vento/barulho de evento + compressão + equalização de presença (`-9 dB` a `-12 dB`). |
-| **Música de Fundo** | Sempre presente (beat geek/synth/lo-fi energético em entrevistas; tensão/game-show em dinâmicas), **`-24 dB` a `-28 dB` abaixo da voz** com **sidechain/ducking automático** quando há fala. |
+| **Música de Fundo** | Sempre presente, **suave e sem batidas fortes** (buscar primeiro em `assets/music/`; se estiver vazia, gerar trilha sintética lo-fi/synth macia com `lowpass ~1600 Hz` para evitar *kick* seco), **`-24 dB` a `-28 dB` abaixo da voz** com **sidechain/ducking automático** quando há fala. |
 | **Memes & SFX** | *Whoosh* sutil em entradas de card/B-roll, *Pop* em mudanças de placar/tag, *Alert/Vine Boom/Buzzer* pontuais na piada — **limitados entre `-12 dB` e `-8 dB`** para nunca estourar acima da voz. |
 
 ---

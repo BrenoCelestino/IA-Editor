@@ -106,3 +106,4 @@ Se você quiser rodar comandos manualmente no terminal (como `ffmpeg`, `whisper`
 - `.agents/skills/editar-short-tresdemenos/SKILL.md` — passo a passo técnico de edição (anti-desync VFR, mixagem, render e validação).
 - `setup.ps1` / `setup.sh` — scripts de instalação isolada (Windows e Linux).
 - `activate-env.ps1` / `activate-env.sh` — scripts de ativação do ambiente isolado.
+- `clean.ps1` / `clean.sh` — limpeza de arquivos residuais das gerações (`.cache/trabalho/` e temporários, preservando `Video Bruto/`, `Video Pronto/`, `.venv/`, `node_modules/` e modelos baixados).

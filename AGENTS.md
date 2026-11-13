@@ -18,7 +18,7 @@ O foco do canal é conteúdo **geek, nerd e gamer**:
 - `Video Pronto/` — entregas finais editadas em `1080x1920` (`.mp4`), acompanhadas de sugestão de título/descrição/hashtags quando aplicável.
 - `Referencia/` — vídeos de referência baixados (`Referencia/TresDeMenos/` e `Referencia/FlowGames/`).
 - `docs/` — folha de estilo (`docs/FOLHA_DE_ESTILO.md`) e estudo do canal/referências (`docs/ESTUDO_REFERENCIAS_E_CANAL.md`).
-- `assets/` — fontes, músicas livres, SFX, templates de HUD/overlay (criar subpastas organizadas conforme necessidade).
+- `assets/` — fontes (`assets/fonts/`), músicas de fundo (`assets/music/`), SFX (`assets/sfx/`) e overlays/HUDs (`assets/overlays/`). Se `assets/music/` estiver vazia, gerar trilha sintética suave sem batidas fortes (`lowpass ~1600Hz`, fundo discreto).
 - `.venv/`, `node_modules/`, `.cache/` — ambiente isolado local (nunca instalar pacotes globais no Windows).
 
 ## 4. Ambiente Isolado e Ferramentas (Obrigatório)
@@ -46,3 +46,4 @@ Observações técnicas:
 4. Legendas em CAIXA ALTA dentro da **Safe Zone** (acima dos `28%` inferiores e abaixo dos `14%` superiores), cores por falante conforme `docs/FOLHA_DE_ESTILO.md`, sem sublinhado.
 5. Mixagem final entre `-13` e `-14 LUFS`, `LRA <= 5 LU`, True Peak `<= -1.0 dBTP`, música com ducking e SFX sem estourar.
 6. Inspeção visual obrigatória de frames-chave (hook, meio, fim) e verificação com `ffprobe` (incluindo `video.duration` vs `audio.duration` `<= 0.04s`) / `ffmpeg ebur128` antes de entregar em `Video Pronto/`, acompanhada de **título, tags/hashtags e sugestão de horário para YouTube Shorts, Instagram Reels e TikTok**.
+7. **Limpeza pós-geração:** ao final de cada entrega, **perguntar ao usuário se deseja limpar os arquivos residuais** (`.cache/trabalho/` e temporários). Se o usuário confirmar, executar `.\clean.ps1` (Windows) ou `bash clean.sh` (Linux).

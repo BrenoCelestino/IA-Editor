@@ -35,7 +35,7 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 
 ### 3. Tratamento de Áudio e Mixagem
 - Aplicar passa-altas (`highpass=f=80`) para limpar vento/ar-condicionado de evento e compressão vocal consistente.
-- Inserir trilha de fundo compatível com o mood (`-24 dB` a `-28 dB` abaixo da voz, com ducking automático na fala).
+- **Trilha de fundo (`assets/music/`):** verificar primeiro se há músicas em `assets/music/` (e SFX em `assets/sfx/`). Se `assets/music/` estiver vazia, gerar trilha local **suave, sem batidas fortes** (estilo lo-fi/synth macio com `lowpass=f=1600` para tirar ataque seco do *kick*), em volume discreto (`-24 dB` a `-28 dB` abaixo da voz, ex.: `volume=0.11` em trilha normalizada) com *ducking* automático na fala (`sidechaincompress` `ratio=4.5`, `threshold=0.025`).
 - Inserir SFX/áudios de meme limitados entre `-12 dB` e `-8 dB` (sem picos bruscos).
 - Normalizar saída final com `loudnorm` para `-13` a `-14 LUFS`, True Peak `<= -1.0 dBTP`, `LRA <= 5 LU`.
 
@@ -53,3 +53,4 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 - Conferir loudness com `ffmpeg -af ebur128` (`I` próximo de `-13/-14 LUFS`, `LRA <= 5 LU`).
 - Extrair frames do hook (`0.5s`), meio (`50%`), transição/meme e final (`95%`) e inspecionar visualmente com `read_file` para garantir que nenhuma legenda invade a UI do Shorts nem sobrepõe rostos.
 - Entregar junto ao vídeo uma sugestão separada para **YouTube Shorts**, **Instagram Reels** e **TikTok** contendo: **título/legenda**, **tags/hashtags específicas** e **horário sugerido de postagem** (fuso `America/Fortaleza`).
+- **Perguntar ao usuário se deseja limpar os arquivos residuais** ao final da entrega. Caso o usuário responda que sim, executar `.\clean.ps1` (Windows) ou `bash clean.sh` (Linux) na raiz do projeto.
