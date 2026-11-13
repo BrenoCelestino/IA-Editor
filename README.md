@@ -2,7 +2,7 @@
 
 Ambiente local isolado e padronizado para edição de vídeos curtos (YouTube Shorts, Reels e TikTok) do canal **Três de Menos** (Breno, Reuel e Athos), com foco em conteúdo geek, entrevistas de cosplay e dinâmicas em grupo.
 
-Atenção: No primeiro use execute o script adequado para seu sistema, sempre que enviar um video para editar, forneça o maximo de detalhes possiveis e especificos para aumentar a qualidade final e precisão da edição, forneça nomes, referencia e coisas para evitar o achismo da IA. O uso do projeto é simples, depois de roda o script, abra sua IA dentro da pasta do projeto, coloque o video bruto na pasta "Video Bruto", e fale para o agente editar o video que esta na pasta, fornecendo os detalhes especifico que queira.
+Atenção: No primeiro uso execute o script adequado para seu sistema, sempre que enviar um video para editar, forneça o maximo de detalhes possiveis e especificos para aumentar a qualidade final e precisão da edição, forneça nomes, referencia e coisas para evitar o achismo da IA. O uso do projeto é simples, depois de roda o script, abra sua IA dentro da pasta do projeto, coloque o video bruto na pasta "Video Bruto", e fale para o agente editar o video que esta na pasta, fornecendo os detalhes especifico que queira.
 
 ## Estrutura do Projeto
 
