@@ -54,11 +54,12 @@ O estilo do **Três de Menos** combina:
 - **Pílulas / Reações / Cortes Rápidos / Comentário Geek:** **`25s – 45s`**
 - **Entrevistas de Cosplay / Dinâmicas em Grupo:** **`45s – 65s`** *(teto recomendado: `70s`; quando houver bastante material bom, dividir em **Parte 1 / Parte 2** em vez de esticar para `115s–150s`)*.
 
-### 4.2 Gancho (0,0s – 2,8s)
-- **Cold Open obrigatório:** Nunca abrir com *"Qual é o seu nome?"* ou câmera procurando foco. Começar com:
-  1. A frase/reação mais forte, absurda ou engraçada da gravação (flash de `1,5s–2,5s`), **OU**
+### 4.2 Gancho (0,0s – 2,5s) e Transição para o Vídeo
+- **Cold Open imediato (frame 0):** Nunca abrir em silêncio ou com *"Qual é o seu nome?"* ou câmera procurando foco. Começar já no frame 0 com impacto visual + sonoro (`whoosh`/`impact` sutil):
+  1. A frase/reação mais forte, absurda ou engraçada da gravação (flash de `1,5s–2,4s`) com *punch-in* (`115%–125%`), **OU**
   2. Close imediato no detalhe mais impressionante do cosplay + pergunta direta com curiosidade.
-- **Hook Banner (0,0s – 2,8s):** Pílula/card no terço superior seguro (`~16%–21%` da altura, fundo escuro `#11131A` a `85%` com borda/acento `#FFD600` ou `#F472B6`) com **3 a 6 palavras de gancho**. O banner **sai aos ~2,8s** para liberar o quadro.
+- **Hook Banner (0,0s – 2,5s):** Pílula/card no terço superior seguro (`~14%–19%` da altura, fundo escuro `#11131A` a `88%` com borda/acento `#FFD600` ou `#F472B6`) com **3 a 5 palavras curtas e provocativas** (ex.: `"PERGUNTA PROIBIDA PRO CLOUD"`, `"ELE NÃO TANKOU ESSA"`), entrando e saindo com animação suave (*slide* + *fade*) até `~2,5s` para maximizar retenção no YouTube, Instagram e TikTok.
+- **Pequena transição simples para o vídeo principal:** Ao final do *Cold Open* (`~2,0s–2,5s`), fazer uma transição rápida e limpa (ex.: *impacto sonoro curto + corte seco / flash ou zoom reset de ~0,15s*) direto para o início da entrevista/dinâmica sem perder ritmo.
 
 ### 4.3 Ritmo de Cortes e Zoom
 - **Corte de silêncios e vícios:** Remover todas as pausas `> 0,25s`, respirações vazias, trocas lentas de celular/microfone e enrolações (meta de ritmo: **`195–220 WPM`** efetivos, preservando respiros de `0,4s–0,6s` apenas quando houver timing cômico).
@@ -71,8 +72,8 @@ O estilo do **Três de Menos** combina:
 - **Seleção de Perguntas (Entrevistas):** Escolher apenas as **2 ou 3 melhores trocas** da entrevista (em vez de manter todas as 5–6 perguntas na sequência completa).
 
 ### 4.4 Fechamento (Loop / Pico)
-- **Proibido encerramento frio** (*"É isso, tamo junto, valeu, tchau"*).
-- Encerrar no **pico de energia** (pose final com música/efeito curto de `1s–1,5s`, última piada ou corte em suspensão que conecte com a abertura).
+- **Proibido encerramento frio** (*"É isso, tamo junto, valeu, tchau"*) e **proibido CTA de pergunta no final** (não forçar *"qual você prefere? comenta aí"* no encerramento do vídeo).
+- Encerrar sempre no **pico de energia/piada** (pose final com música/efeito curto de `1s–1,5s`, última punchline ou corte em suspensão que favoreça retenção e *replay*).
 
 ---
 
@@ -99,11 +100,21 @@ O estilo do **Três de Menos** combina:
 
 ---
 
-## 6. Padrão de Publicação (Metadados de Apoio)
+## 6. Padrão de Publicação (Metadados por Plataforma)
 
-Cada vídeo entregue em `Video Pronto/` deve incluir sugestão de:
-- **Título em Português (PT-BR)** direto, com gancho de curiosidade + nome do personagem/dinâmica (evitar títulos genéricos como `"Entrevistando cosplayers..."`).
-- **Descrição curta** com `@` dos cosplayers entrevistados + `#shorts` + 3 hashtags do nicho real do vídeo (sem tags copiadas de gameplay em vídeo de cosplay).
+Ao final de **cada geração/entrega** em `Video Pronto/`, incluir obrigatoriamente recomendações separadas para as **3 plataformas** conectadas do canal (usando fuso `America/Fortaleza` e o histórico do Buffer como referência quando disponível), **sem CTA de pergunta no fechamento**:
+- **YouTube Shorts:**
+  - **Título (PT-BR):** direto, focado em busca + curiosidade e nome do personagem/dinâmica (evitar genéricos como `"Entrevistando cosplayers..."`).
+  - **Descrição & Tags:** descrição curta com `@` dos cosplayers + `#shorts` e 3–4 tags específicas do nicho real.
+  - **Horário sugerido:** janela recomendada para publicação.
+- **Instagram Reels:**
+  - **Título/Gancho de capa + Legenda:** legenda conversacional curta com `@` do cosplayer entrevistado.
+  - **Hashtags:** 4–5 hashtags do nicho real do vídeo.
+  - **Horário sugerido:** janela recomendada para publicação.
+- **TikTok:**
+  - **Título/Legenda:** 1 linha curta e direta (gancho imediato, sem enrolação) + `@` quando aplicável.
+  - **Hashtags:** 4–5 hashtags de descoberta + nicho geek/cosplay.
+  - **Horário sugerido:** janela recomendada para publicação.
 
 ---
 

@@ -39,8 +39,8 @@ Observações técnicas:
 
 ## 5. Checklist Rápido Pré-Entrega (Todo Vídeo Editado)
 1. Formato exato `1080x1920` (9:16 real, sem tarjas pretas de 3:4/16:9).
-2. Abertura com **Cold Open + Hook Visual** nos primeiros `0s–2,8s` (nunca iniciar em silêncio ou *"qual seu nome?"* sem gancho).
-3. Pausas mortas `> 0,25s` removidas; reset visual (zoom/corte/B-roll/overlay) a cada `1,8s–3,0s`.
+2. Abertura com **Cold Open + Hook Visual forte (`0s–2,5s`) + pequena transição simples** (nunca iniciar em silêncio ou *"qual seu nome?"* sem gancho; banner curto de 3–5 palavras com animação).
+3. Pausas mortas `> 0,25s` removidas; reset visual (zoom/corte/B-roll/overlay) a cada `1,8s–3,0s`; **sem CTA de pergunta no final** (encerrar no pico da piada/energia).
 4. Legendas em CAIXA ALTA dentro da **Safe Zone** (acima dos `28%` inferiores e abaixo dos `14%` superiores), cores por falante conforme `docs/FOLHA_DE_ESTILO.md`, sem sublinhado.
 5. Mixagem final entre `-13` e `-14 LUFS`, `LRA <= 5 LU`, True Peak `<= -1.0 dBTP`, música com ducking e SFX sem estourar.
-6. Inspeção visual obrigatória de frames-chave (hook, meio, fim) e verificação com `ffprobe` / `ffmpeg ebur128` antes de entregar em `Video Pronto/`.
+6. Inspeção visual obrigatória de frames-chave (hook, meio, fim) e verificação com `ffprobe` / `ffmpeg ebur128` antes de entregar em `Video Pronto/`, acompanhada de **título, tags/hashtags e sugestão de horário para YouTube Shorts, Instagram Reels e TikTok**.

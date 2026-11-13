@@ -23,9 +23,9 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 - Se o vídeo tiver trechos longos, gerar uma folha de contato visual com `ffmpeg` para identificar falantes, expressões, detalhes de cosplay e melhores momentos visuais.
 
 ### 2. Roteiro de Corte (Retenção Primeiro)
-- **Identificar o Cold Open (0s–2,5s):** escolher a resposta mais engraçada, frase absurda ou close impressionante do cosplay.
-- **Selecionar os melhores blocos:** para entrevistas, manter as **2–3 melhores trocas** dentro da duração alvo (`45s–65s`, teto `70s` salvo aprovação para Parte 1/2). Para pílulas/reações, mirar `25s–45s`.
-- **Cortar pausas mortas > 0.25s** respeitando timing cômico (`0.4s–0.6s` quando houver piada).
+- **Identificar o Cold Open (0s–2,5s) + Transição simples:** começar já no frame 0 com a resposta mais engraçada, frase absurda ou close impressionante do cosplay + *punch-in* (`115%–125%`) + SFX de impacto, banner curto (`3–5 palavras`) e uma **pequena transição simples** (ex.: corte seco com impacto sonoro ou *flash/zoom reset* de `~0,15s`) entrando no vídeo principal.
+- **Selecionar os melhores blocos:** para entrevistas, manter as **2–4 melhores trocas** dentro da duração alvo (`45s–65s`, teto `70s` salvo aprovação para Parte 1/2). Para pílulas/reações, mirar `25s–45s`.
+- **Cortar pausas mortas > 0.25s** respeitando timing cômico (`0.4s–0.6s` quando houver piada) e **encerrar no pico** (sem CTA de pergunta no final).
 - **Planejar resets visuais a cada 1.8s–3.0s:** mapear momentos de `punch-in` (`115%–125%`), `close` em detalhe (`130%+`), inserção de B-roll/meme (`0.8s–1.8s`) ou micro-tag/HUD.
 
 ### 3. Tratamento de Áudio e Mixagem
@@ -46,4 +46,4 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 - Conferir `ffprobe` no arquivo final em `Video Pronto/` (deve ser `1080x1920`, áudio AAC 44.1/48kHz).
 - Conferir loudness com `ffmpeg -af ebur128` (`I` próximo de `-13/-14 LUFS`, `LRA <= 5 LU`).
 - Extrair frames do hook (`0.5s`), meio (`50%`), transição/meme e final (`95%`) e inspecionar visualmente com `read_file` para garantir que nenhuma legenda invade a UI do Shorts nem sobrepõe rostos.
-- Entregar junto ao vídeo uma sugestão de **título PT-BR com gancho**, **descrição com @s** e **hashtags específicas**.
+- Entregar junto ao vídeo uma sugestão separada para **YouTube Shorts**, **Instagram Reels** e **TikTok** contendo: **título/legenda**, **tags/hashtags específicas** e **horário sugerido de postagem** (fuso `America/Fortaleza`).
