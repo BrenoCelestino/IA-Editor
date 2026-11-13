@@ -22,8 +22,8 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 
 ### 1. Ingestão, Normalização CFR e Análise do Bruto
 - Inspecionar o bruto com `ffprobe` (resolução, fps — verificar se é VFR de celular —, orientação/rotação, streams de áudio, duração, loudness).
-- **Normalização obrigatória contra dessincronia (VFR):** Antes de cortar qualquer trecho de vídeo gravado em celular (VFR) ou com rotação no Display Matrix, converter o bruto (ou o trecho contínuo) para um intermediário **CFR exato** em `.mov` (`h264_nvenc` + `pcm_s16le 48kHz`, `-fps_mode cfr -r 30` ou `60`, `-g 15`, `aresample=48000:async=1`), confirmando com `ffprobe` que `video.duration == audio.duration`.
-- Extrair áudio mono 16kHz para `.cache/trabalho/<id>/audio.wav` e transcrever com `whisper` na GPU com `word_timestamps=True` e `language="pt"`.
+- **Normalização obrigatória contra dessincronia (VFR):** Antes de cortar qualquer trecho de vídeo gravado em celular (VFR) ou com rotação no Display Matrix, converter o bruto (ou o trecho contínuo) para um intermediário **CFR exato** em `.mov` (usando o encoder `TRESDEMENOS_FFMPEG_ENCODER` do `.cache/hardware.env` — ex.: `h264_nvenc`, `h264_vaapi`, `h264_qsv` ou `libx264` — + `pcm_s16le 48kHz`, `-fps_mode cfr -r 30` ou `60`, `-g 15`, `aresample=48000:async=1`), confirmando com `ffprobe` que `video.duration == audio.duration`.
+- Extrair áudio mono 16kHz para `.cache/trabalho/<id>/audio.wav` e transcrever com `whisper` usando `--device` definido em `TRESDEMENOS_WHISPER_DEVICE` (`cuda`, `xpu` ou `cpu` carregado de `.cache/hardware.env`), `--word_timestamps True` e `--language pt`.
 - **Conferência de falas sobrepostas:** Quando 2+ pessoas falarem ao mesmo tempo (ex.: *"3, 2, 1..."* em dinâmicas) ou o Whisper gerar frase duvidosa, extrair um clipe curto `.mp3` e conferir o áudio diretamente com `read_file` antes de gerar as legendas.
 - Se o vídeo tiver trechos longos, gerar frames de amostra / folha de contato visual com `ffmpeg` para identificar falantes, expressões, detalhes de cosplay e melhores momentos visuais.
 

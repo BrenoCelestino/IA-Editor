@@ -35,9 +35,9 @@ Esses scripts:
 
 Observações técnicas:
 - Para `yt-dlp` no YouTube sem warnings de JS runtime, use `--js-runtimes node`.
-- Para transcrições, use `whisper` na GPU (`--device cuda`, `--word_timestamps True`, `--language pt`); em falas simultâneas/duvidosas, confira o áudio antes de legendar.
-- Para cortes sem dessincronia em vídeos VFR de celular, normalize antes para CFR `.mov` (`-fps_mode cfr` + `pcm_s16le`) e corte via `filter_complex_script` (`trim`/`atrim` + `concat`).
-- Para diagnósticos/overlays/renderização determinística HTML+CSS+GSAP, use `npx hyperframes` (com `HYPERFRAMES_CACHE_DIR` ativo via `activate-env.ps1`).
+- Para transcrições, use `whisper` com o dispositivo detectado em `.cache/hardware.env` (`--device $env:TRESDEMENOS_WHISPER_DEVICE` no PowerShell ou `--device "$TRESDEMENOS_WHISPER_DEVICE"` no Bash, junto com `--word_timestamps True --language pt`); em falas simultâneas/duvidosas, confira o áudio antes de legendar.
+- Para cortes sem dessincronia em vídeos VFR de celular, normalize antes para CFR `.mov` (usando o encoder `TRESDEMENOS_FFMPEG_ENCODER`, fallback `libx264`, com `-fps_mode cfr` + `pcm_s16le`) e corte via `filter_complex_script` (`trim`/`atrim` + `concat`).
+- Para diagnósticos/overlays/renderização determinística HTML+CSS+GSAP, use `npx hyperframes` (com `HYPERFRAMES_CACHE_DIR` ativo via `activate-env.ps1` / `activate-env.sh`).
 
 ## 5. Checklist Rápido Pré-Entrega (Todo Vídeo Editado)
 1. Formato exato `1080x1920` (9:16 real, sem tarjas pretas de 3:4/16:9).
