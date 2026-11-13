@@ -13,7 +13,10 @@ Use esta skill sempre que o usuário pedir para editar um vídeo da pasta `Video
 ## Pré-requisitos Obrigatórios
 1. Ler `docs/FOLHA_DE_ESTILO.md` e confirmar que as regras seguidas estão aprovadas pelo usuário.
 2. Nunca modificar os arquivos originais em `Video Bruto/`. Trabalhar com arquivos temporários em `.cache/trabalho/<nome_projeto>/` e exportar o resultado final em `Video Pronto/`.
-3. Sempre iniciar comandos PowerShell com `Set-Location "C:\Users\breno\Desktop\IA Editor"; . .\activate-env.ps1` (cada shell abre em `C:\Users\breno`).
+3. Sempre ativar o ambiente isolado na raiz do repositório antes de rodar comandos:
+   - **Windows (PowerShell):** `. .\activate-env.ps1`
+   - **Linux/macOS (Bash):** `source ./activate-env.sh`
+   *(Respeitar o dispositivo Whisper e encoder detectados em `.cache/hardware.env` — ex.: `cuda`/`cpu` e `h264_nvenc`/`libx264`/`h264_vaapi`.)*
 
 ## Pipeline de Edição Passo a Passo
 

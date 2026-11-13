@@ -22,15 +22,16 @@ O foco do canal é conteúdo **geek, nerd e gamer**:
 - `.venv/`, `node_modules/`, `.cache/` — ambiente isolado local (nunca instalar pacotes globais no Windows).
 
 ## 4. Ambiente Isolado e Ferramentas (Obrigatório)
-Sempre ative o ambiente local no início de comandos PowerShell no projeto:
-```powershell
-. .\activate-env.ps1
-```
-Esse script:
-- Ativa `.venv` (Python 3.14, `yt-dlp` 2026.10.26, `openai-whisper` 20250625, `torch` 2.14.1+cu130 com GPU RTX 3050 CUDA);
-- Adiciona `node_modules\.bin` ao `PATH` (`hyperframes` 0.9.41);
-- Define `XDG_CACHE_HOME`, `TORCH_HOME` e `HYPERFRAMES_CACHE_DIR` para `.cache\` dentro do projeto (mantendo modelos do Whisper e Chrome Headless Shell isolados fora do perfil do Windows);
-- Usa `ffmpeg` / `ffprobe` (`8.1.2-full_build`) já presentes no `PATH` do sistema.
+Sempre ative o ambiente local na raiz do projeto antes de executar comandos:
+- **Windows (PowerShell):** `. .\activate-env.ps1`
+- **Linux/macOS (Bash):** `source ./activate-env.sh`
+
+Esses scripts:
+- Ativam `.venv` (Python `>=3.12,<3.15`, `yt-dlp`, `openai-whisper`, `torch` adequado à GPU/CPU detectada pelo `setup.ps1`/`setup.sh`);
+- Adicionam `node_modules/.bin` ao `PATH` (`hyperframes` `0.9.41`);
+- Definem `XDG_CACHE_HOME`, `TORCH_HOME` e `HYPERFRAMES_CACHE_DIR` para `.cache/` dentro do projeto (mantendo modelos do Whisper e Chrome Headless Shell isolados);
+- Carregam o perfil de hardware em `.cache/hardware.env` (`TRESDEMENOS_WHISPER_DEVICE` e `TRESDEMENOS_FFMPEG_ENCODER`);
+- Usam `ffmpeg` / `ffprobe` presentes no `PATH` do sistema.
 
 Observações técnicas:
 - Para `yt-dlp` no YouTube sem warnings de JS runtime, use `--js-runtimes node`.
